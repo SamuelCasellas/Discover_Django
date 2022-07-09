@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Breakdown</title>
+    <style>
+        li {
+          margin-top: 25px;
+        } 
+    </style>
+</head>
+<body>
+  <a href={% url 'todo:index' %}><button>&lt;- Return</button ></a>
+    <p>Task: {{todo.todo_description}}</p>
+    <form action="/todo/" method="POST">
+      {% csrf_token %}
+      <button name="task-complete" value={{todo.id}}>Completed</button>
+    </form>
+    <br />
+    <!-- Steps show here -->
+
+    {% for step in steps %}
+    <p>{{step.step_number}}. {{step.instruction_step}}</p>
+    {% if forloop.counter == 1 and steps|length != 1 %}
+    <form action={% url 'todo:steps' todo.id %} method="POST">
+      {% csrf_token %}
+      <button name="step-complete" value={{ step.id }}>Step Complete</button>
+    </form>
+    {% endif %}
+    {% endfor %}
+
+</body>
+</html>

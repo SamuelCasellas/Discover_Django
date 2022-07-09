@@ -1,0 +1,58 @@
+<!-- Adding new items page -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Todo</title>
+    <style>
+        li {
+          margin-top: 25px;
+        } 
+    </style>
+    
+</head>
+<body>
+    {% if time_formatting_error %}
+    <span style="color:crimson;">Invalid time format.<br />Example: Jun 1 2005 1:33 PM<br /></span>     
+    {% endif %}
+        
+    {% if item_saved %}
+    <span style="color:rgb(0, 134, 0);">"{{item}}" successfully saved.<br /></span>     
+    {% endif %}
+    <a href="/todo"><button>&lt;- Return</button ></a>
+
+    <form action="/todo/add_todo/" method="POST">
+        {% csrf_token %}
+        <label for="to-do">Add To-do:</label>
+        <input id="to-do" type="text" name="to-do" style="margin: 10px 10px 0px 0px;">
+        <button>Submit</button>
+        <br />
+        <label for="time">Time to finish: </label>
+        <input id="time" type="text" name="time" style="margin-top: 20px;">
+        <button id="add-steps" type="button" style="margin: 20px 0px 0px 20px;">Add Steps</button>
+        <ol id="steps"></ol>
+    </form>
+
+    <script>
+        const addStepsBtn = document.getElementById("add-steps");
+        const stepsDiv = document.getElementById("steps");
+        var numSteps = 1;
+        addStepsBtn.addEventListener("click", function() {
+            if (11 > numSteps) {
+                var listItem = document.createElement("li");
+                var step = document.createElement("input");
+                step.type = "text";
+                // Must add name for each step so they all can be transfered in the POST.
+                step.name = `step${numSteps}`;
+                listItem.appendChild(step);
+                stepsDiv.appendChild(listItem);
+                numSteps++;
+            } else alert("Max number of steps reached.");
+        });
+    </script>
+
+</body>
+</html>

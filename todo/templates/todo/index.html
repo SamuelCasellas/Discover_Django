@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Dos</title>
+    <style>
+        th, td {
+            border: 2px black solid;
+        }
+    </style>
+</head>
+<body>
+    {%  if task_completed %}
+    <span style="color:rgb(0, 134, 0);">"{{completed_task}}" has been completed!<br /></span>     
+    {% endif %}
+    {% if todos %}
+    <h1>To-Dos</h1>
+    <table>
+      <thead>
+        <tr>
+            <th>Task</th>
+            <th>Due date and time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todos %}
+        <tr>
+            <!-- Preferred syntax over "href=/todo/{{ todo.id }}/" -->
+            <td><a href={% url 'todo:steps' todo.id %}>{{todo}}</a></td>
+            {% if todo.over_due %}
+            <td style="color: red;">OVERDUE: {{todo.scheduled_time}}</td>
+            {% else %}
+            <td>{{todo.scheduled_time}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h1>To-Dos Empty</h1>
+    {% endif %}
+
+    <a href="add_todo/"><button>Add Todo</button></a>
+</body>
+</html>
