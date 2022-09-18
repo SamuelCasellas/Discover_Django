@@ -37,13 +37,14 @@ This app will help me and anyone else stay on top of their daily duties.
 
 In order to successfully test run the app, ensure that Django is installed
 on your local machine and run the following command:
+<br>
 `python3 manage.py runserver`
 
 Then, ctrl click the port that is shown in the terminal, and then navigate
 to the homepage by adding /todo/ at the end of the url in the browser.
 
 
-[Software Demo Video]https://youtu.be/GxdSa0qcI-s)
+[Software Demo Video](https://youtu.be/GxdSa0qcI-s)
 
 # Web Pages Created
 
@@ -72,8 +73,8 @@ Developed with the Django library in Python installed in a virtual environment.
 
 Steps:
 
-1. Create a virtual environment: 'python3 -m venv venv'
-2. Activate the virtual environment: 'source venv/bin/activate'
+1. Create a virtual environment: `python3 -m venv venv`
+2. Activate the virtual environment: `source venv/bin/activate`
 3. Install Django: `pip install Django`
 
 # Useful Websites
@@ -87,4 +88,5 @@ Steps:
 * Beautifying the UI with more CSS
 * Expand upon this idea to create a grocery list that pulls grocery items along with their respective prices from a website
 * Discover how to publish the website for others to use
+ - https://www.youtube.com/watch?v=Q_YOYNiSVDY
 * Create tests for my web page in Django
